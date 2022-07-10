@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Wacky Widgets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <h1>Wacky Widgets</h1>
+  <table class="pure-table">
+    <thead>
+      <tr>
+        <td class="bold">Description</td>
+        <td class="bold">Quantity</td>
+        <td class="bold">Delete</td>
+      </tr>
+    </thead>
+  </table>
+    {% if widgets %}
+      {% for widget in widgets %}
+        <table class="pure-table-striped">
+    <thead>
+      <tr>
+        <td>{{widget.description}}</td>
+        <td>{{widget.quantity}}</td>
+        <td><a href="{% url 'widget_delete' widget.id %}">X</a></td>
+      </tr>
+    </thead>
+        </table>
+      {% endfor %}
+    {% else %}
+       <h3>No Widget Exists</h3>
+    {% endif %}
+  <hr>
+  
+  <a href="{% url 'widget_create' %}"><h4>Add Widget</h4></a>
+  
+</body>
+</html>
